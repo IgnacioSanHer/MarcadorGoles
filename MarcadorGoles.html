@@ -1,0 +1,78 @@
+<html>
+	<head>
+	<title>PICHICHI</title>
+		<style>
+		h1,h2{
+		text-align:center;
+		}
+		#capa{
+		text-align:center;
+		font-size: 30px;
+		}
+		button{
+		margin: 1%;
+		padding: 1%;
+		}
+		</style>
+		<script type="text/javascript">
+		function cargar(){
+		if(localStorage.getItem("Gi")==null && localStorage.getItem("Gj")==null){
+				localStorage.setItem("Gi", 0);
+				localStorage.setItem("Gj", 0);
+			}
+		}
+		function guardarIgnacio() {
+            var i1 = document.getElementById("GolesIgna").value;
+            sessionStorage.setItem("GolesIgna", i1);
+			i1++;
+			document.getElementById("GolesIgna").value=i1;
+			document.getElementById("GolIg").innerHTML = "Goles: "+i1;
+        }
+		function guardarJuan() {
+            var j1 = document.getElementById("GolesJuan").value;
+            sessionStorage.setItem("GolesJuan", j1);
+			j1++;
+			document.getElementById("GolesJuan").value=j1;
+			document.getElementById("GolJu").innerHTML = "Goles: "+j1;
+        }
+		function pasarLocal() {
+			var Gi = document.getElementById("GolesIgna").value;
+			localStorage.setItem("Gi", Gi);
+			var Gj = document.getElementById("GolesJuan").value;
+			localStorage.setItem("Gj", Gj);
+		}
+		function mostrarGeneral() {
+			var Goli = localStorage.getItem("Gi");
+			document.getElementById("GolesIgna").value = Goli;
+			document.getElementById("GolIg").innerHTML = "Goles: "+Goli;
+			var Golj = localStorage.getItem("Gj");
+			document.getElementById("GolesJuan").value = Golj;
+			document.getElementById("GolJu").innerHTML = "Goles: "+Golj;
+		}
+		function borrarGeneral(){
+			localStorage.clear();
+			location.reload();
+		}
+		function borrarSesion(){
+			sessionStorage.clear();
+			location.reload();
+		}
+		</script>
+	</head>
+	<body onload="javascript:cargar(),mostrarGeneral();" style="background-color:blue;">
+	<h1>PICHICHI DEL BULLS EYE F.S.</h1>
+	<h2>Ésta es la clasificación general de goleadores del Bulls Eye FS.</h2>
+	<div id="capa">
+	IGNACIO <button type="button" class="gol" id="ignacio" onClick="javascript:guardarIgnacio();">GOL</button></br>
+	<progress id="GolesIgna" value="0" max="30"></progress>
+	<div id="GolIg"></div>
+	</p>
+	JUAN <button type="button" class="gol" id="juan" onClick="javascript:guardarJuan();">GOL</button></br>
+	<progress id="GolesJuan" value="0" max="30"></progress></br>
+	<div id="GolJu"></div> </p>
+	<button type="button" id="pasarALocal" onClick="javascript:pasarLocal();">GUARDAR</button>
+	<button type="button" id="borrarLocal" onClick="javascript:borrarGeneral();">BORRAR CLASIFICACIÓN</button>	
+	<button type="button" id="borrarLocal" onClick="javascript:borrarSesion();">BORRAR SESION</button>
+	</div>
+	</body>
+</html>
